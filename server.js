@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -7,7 +8,7 @@ const htmlRoutes = require('./routes/noteHtmlRoutes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'Develop/public')));
 
 // Use apiRoutes
 app.use('/api', apiRoutes)
@@ -17,24 +18,3 @@ app.listen(PORT, () => {
   console.log(`Server on port ${PORT}!`);
 })
 
-
-// const express = require('express')
-// const app = express()
-
-// app.use(logger)
-
-// //http://localhost:3000
-// //= /
-// app.listen(3000)
-
-// //setting up routes 
-// const newnotesRouter = require('./routes/newnotes')
-// app.use('/newnotes', newnotesRouter)
-
-
-
-// function logger(req, res, next) {
-//     console.log(req.originalUrl)
-//     next()
-
-// }
