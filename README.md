@@ -4,6 +4,7 @@
   Allows a user to take, save, display, and delete notes.
 
 ## Link:
+https://collin-w.github.io/note-taker/
  
  ## Features:
  - save a note with a title
