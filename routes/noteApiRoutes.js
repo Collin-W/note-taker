@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const fs = require('fs');
-const { request } = require('http');
 const path = require('path');
-const { notesArray } = require("../Develop/db/db.json");
+const writeFileSync = fs.writeFileSync(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes, null, 2));
+//const notesArray = require("../Develop/db/db.json");
 // const {
 //     createNewNote
 // } = require('../Develop/lib/lib.js')
@@ -14,17 +14,48 @@ router.get('/notes', (req, res) => {
 
     let results = JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
     res.json(results)
-    console.log(res.json(results))
+    
 });
 
 
 router.post('/notes', (req, res) => { 
     const note = req.body;
+    //let notes = notesArray
+    let notes =  JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
 
-    notesArray.push(note);
+    note.id = notes.length
 
-    console.log(notesArray.push(note))
+    notes.push(note);
+
+    fs.writeFileSync(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes, null, 2));
+    //writeFileSync;
+
+    res.json();
+});
+
+
+router.delete('/notes/:id', (req, res) => {
+    let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
+
+    let index = req.params.id;
+
+    notes.splice(index, 1);
+
+    notes.forEach( ele => {
+        ele.id = notes.indexOf(ele)
+
+        fs.writeFileSync(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes, null, 2));
+        //writeFileSync;
+
+    
+
+    res.json();
+
+    })
+        
+    
 })
+
 
 
 // Post route should receive a new note and save on request body adding to db.json file
