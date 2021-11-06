@@ -8,7 +8,7 @@ const htmlRoutes = require('./routes/noteHtmlRoutes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'Develop/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Use apiRoutes
 app.use('/api', apiRoutes)

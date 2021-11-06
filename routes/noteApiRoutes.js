@@ -4,7 +4,7 @@ const path = require('path');
 
 //GET route to read the db.json file and return saved notes
 router.get('/notes', (req, res) => {
-    let results = JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
+    let results = JSON.parse(fs.readFileSync(path.join(__dirname, "../db/db.json")));
     
     res.json(results)
 });
@@ -14,19 +14,19 @@ router.get('/notes', (req, res) => {
 router.post('/notes', (req, res) => {
     const note = req.body;
     //let notes = notesArray
-    let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
+    let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../db/db.json")));
 
     note.id = notes.length
 
     notes.push(note);
 
-    fs.writeFileSync(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes, null, 2))
+    fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(notes, null, 2))
 
     res.json();
 });
 
 router.delete('/notes/:id', (req, res) => {
-    let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../Develop/db/db.json")));
+    let notes = JSON.parse(fs.readFileSync(path.join(__dirname, "../db/db.json")));
 
     let index = req.params.id;
 
@@ -35,7 +35,7 @@ router.delete('/notes/:id', (req, res) => {
     notes.forEach(ele => {
         ele.id = notes.indexOf(ele)
 
-        fs.writeFileSync(path.join(__dirname, "../Develop/db/db.json"), JSON.stringify(notes, null, 2))
+        fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(notes, null, 2))
 
         res.json();
     });
