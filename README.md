@@ -7,8 +7,8 @@
 ![Screenshot (34)](https://user-images.githubusercontent.com/88279562/140616828-a71d0193-5491-4619-82c1-d1bbdf65c8ea.png)
 
 
-## Link:
-https://collin-w.github.io/note-taker/
+## Heroku Link:
+ https://pure-plateau-21225.herokuapp.com
  
  ## Features:
  - save a note with a title
